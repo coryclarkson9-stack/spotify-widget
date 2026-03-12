@@ -86,16 +86,18 @@
     /* Mask the playlist preview */
     .mask {
       width: 100%;
-      height: 80px; /* Only show the player bar */
+      height: 80px;
       overflow: hidden;
       border-radius: 12px;
     }
 
     iframe {
       width: 100%;
-      height: 380px; /* Full playlist height */
+      height: 380px;
       border: none;
-      transform: translateY(-250px); /* Correct crop so playback works */
+
+      /* Correct crop so playback works */
+      transform: translateY(-250px);
     }
 
     /* Gold waveform animation */
