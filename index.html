@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OmegaMesh Ultra Playlist Player</title>
+  <title>OmegaMesh Ultra HUD Player</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -32,22 +32,55 @@
       position: relative;
     }
 
-    /* OmegaMesh rotating gold ring */
-    .ring {
+    /* Double OmegaMesh rotating rings */
+    .ring, .ring2 {
       position: absolute;
       width: 480px;
       height: 480px;
       border-radius: 50%;
       border: 2px solid rgba(255, 215, 0, 0.15);
-      animation: spin 18s linear infinite;
       pointer-events: none;
       top: -180px;
       left: -180px;
     }
 
+    .ring { animation: spin 18s linear infinite; }
+    .ring2 { animation: spinReverse 26s linear infinite; }
+
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    /* HUD Title Bar */
+    .hud {
+      width: 100%;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: gold;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+      margin-bottom: 12px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee {
+      display: inline-block;
+      animation: scroll 9s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
     /* Mask the playlist preview */
@@ -62,9 +95,7 @@
       width: 100%;
       height: 380px; /* Full playlist height */
       border: none;
-
-      /* FIXED: correct crop so playback works */
-      transform: translateY(-250px);
+      transform: translateY(-250px); /* Correct crop so playback works */
     }
 
     /* Gold waveform animation */
@@ -92,40 +123,28 @@
       50% { height: 20px; }
     }
 
-    /* Controls */
-    .controls {
-      margin-top: 18px;
-      display: flex;
-      gap: 26px;
+    /* Gold progress bar (visual only) */
+    .progress {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 215, 0, 0.15);
+      border-radius: 4px;
+      margin-top: 14px;
+      overflow: hidden;
     }
 
-    .btn {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: #111;
-      border: 2px solid gold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.25s ease;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    .progress-fill {
+      width: 40%;
+      height: 100%;
+      background: gold;
+      box-shadow: 0 0 12px gold;
+      animation: pulse 3s ease-in-out infinite;
     }
 
-    .btn:hover {
-      transform: scale(1.12);
-      box-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
-      background: #222;
-    }
-
-    svg {
-      fill: gold;
-      transition: 0.25s ease;
-    }
-
-    .btn:hover svg {
-      fill: #ffea8a;
+    @keyframes pulse {
+      0% { width: 20%; }
+      50% { width: 80%; }
+      100% { width: 20%; }
     }
   </style>
 </head>
@@ -134,6 +153,12 @@
   <div class="player">
 
     <div class="ring"></div>
+    <div class="ring2"></div>
+
+    <!-- HUD ABOVE PLAYER -->
+    <div class="hud">
+      <span class="marquee">My Playlist #2 — OmegaMesh HUD Player</span>
+    </div>
 
     <div class="mask">
       <iframe
@@ -150,21 +175,10 @@
       <div class="bar"></div>
     </div>
 
-    <div class="controls">
-
-      <div class="btn">
-        <svg width="26" height="26" viewBox="0 0 24 24">
-          <path d="M11 12L18 6V18L11 12ZM6 6H9V18H6V6Z"/>
-        </svg>
-      </div>
-
-      <div class="btn">
-        <svg width="26" height="26" viewBox="0 0 24 24">
-          <path d="M13 12L6 18V6L13 12ZM15 6H18V18H15V6Z"/>
-        </svg>
-      </div>
-
+    <div class="progress">
+      <div class="progress-fill"></div>
     </div>
+
   </div>
 </body>
 </html>
