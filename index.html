@@ -1,6 +1,105 @@
 <!DOCTYPE html>
-<html>
-  <body style="background:black;color:gold;font-size:40px;text-align:center;padding-top:40px;">
-    Spotify Widget Test — Cory
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OmegaMesh Gold Spotify Playlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      color: gold;
+    }
+
+    .player {
+      width: 100%;
+      max-width: 420px;
+      background: #000;
+      padding: 22px;
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    iframe {
+      border-radius: 14px;
+      width: 100%;
+      height: 380px; /* Taller for playlist */
+      border: none;
+    }
+
+    .controls {
+      margin-top: 18px;
+      display: flex;
+      gap: 26px;
+    }
+
+    .btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #111;
+      border: 2px solid gold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    }
+
+    .btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
+      background: #222;
+    }
+
+    svg {
+      fill: gold;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover svg {
+      fill: #ffea8a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="player">
+
+    <!-- Replace PLAYLIST_ID_HERE with your playlist ID -->
+    <iframe
+      src="https://open.spotify.com/embed/playlist/0HmH0wbXVrgAEOukNwAOcI"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+
+    <div class="controls">
+
+      <!-- Previous -->
+      <div class="btn">
+        <svg width="26" height="26" viewBox="0 0 24 24">
+          <path d="M11 12L18 6V18L11 12ZM6 6H9V18H6V6Z"/>
+        </svg>
+      </div>
+
+      <!-- Next -->
+      <div class="btn">
+        <svg width="26" height="26" viewBox="0 0 24 24">
+          <path d="M13 12L6 18V6L13 12ZM15 6H18V18H15V6Z"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</body>
 </html>
