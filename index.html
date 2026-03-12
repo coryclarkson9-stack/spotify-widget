@@ -29,15 +29,22 @@
       align-items: center;
       border: 1px solid rgba(255, 215, 0, 0.25);
       overflow: hidden;
+      position: relative;
     }
 
     /* Mask the playlist preview */
+    .mask {
+      width: 100%;
+      height: 80px; /* Only show the player bar */
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
     iframe {
       width: 100%;
-      height: 80px; /* minimal height */
+      height: 380px; /* Full playlist height */
       border: none;
-      border-radius: 12px;
-      overflow: hidden;
+      transform: translateY(-300px); /* Move preview out of view */
     }
 
     .controls {
@@ -80,10 +87,12 @@
 <body>
   <div class="player">
 
-    <iframe
-      src="https://open.spotify.com/embed/playlist/0HmH0wbXVrgAEOukNwAOcI?utm_source=generator&theme=0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
+    <div class="mask">
+      <iframe
+        src="https://open.spotify.com/embed/playlist/0HmH0wbXVrgAEOukNwAOcI?utm_source=generator&theme=0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
 
     <div class="controls">
 
